@@ -1,0 +1,61 @@
+@page "/aprendemas"
+
+
+<PageTitle>Aprende más</PageTitle>
+
+
+@if(mostrarvideo){
+
+    @Urlvideo
+
+}
+
+<h1>Aprende más</h1>
+
+<p>Aprende más sobre Blazor</p>
+
+<div class="row">
+    @foreach (var video in videos)
+    {
+        <div class="col-md-4 ,mb-3">
+            <div class="card">
+                <img @onclick="()=>vervideo(video)"src="https://i.ytimg.com/vi/@video.Url/hqdefault.jpg" class="card-img-top" alt="Thumbnail">
+                <div class="card-body">
+                    <h5 class="card-title">@video.Titulo</h5>
+                    <p class="card-text">@video.Titulo</p>
+                    <a href="https://youtube.com/watch?v=@video.Url"target="_blank"
+                    ($"https://www.youtube.com/watch?v={video.Url}")" class="btn btn-primary" target="_blank">ver video</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+
+        bool mostrarvideo = false;
+        string Urlvideo ="";
+
+
+    public class Video
+    {
+        public string Titulo { get; set; } ="";
+        public string Url { get; set; } ="";
+    }
+
+
+    void vervideo(Video video){
+        mostrarvideo= true;
+        Urlvideo = "https://www.youtube.com/watch?v="+ video.Url;
+        StateHasChanged();
+        
+    }
+    private List<Video> videos = new List<Video>
+    {
+        new Video { Titulo = "Blazor Tutorial C# - Part 1 | Blazor Basics in 30 Mins", Url = "dY_AWdCzsCY" },
+        new Video { Titulo = "Blazor Fundamentals Tutorial", Url = "CpbRAWgFBRQ" },
+        new Video { Titulo = "Blazor Web App & Web API in REAL project", Url = "t1mQOWsFpzM" },
+        new Video { Titulo = "¿Qué es Blazor? - Curso de Blazor en español", Url = "weda0npFxtk" },
+        new Video { Titulo = "Setting up a Blazor Server App", Url = "opdoPFjwvo8" }
+    };
+}

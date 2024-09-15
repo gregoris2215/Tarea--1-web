@@ -1,0 +1,30 @@
+@page "/Tabla"
+
+@rendermode InteractiveServer
+
+
+<PageTitle>Tabla</PageTitle>
+
+<h1>Tabla</h1>
+
+<p> En esta seccion encontraras una tabla de multiplicacion</p>
+
+<div>
+    <label>numero:</label>
+    <input type="number" @bind="numero" class="from-control" />
+</div>
+
+
+@if(numero > 0){
+    for(int i = 0; i<=15; i++){
+        <div> @numero * @i = @(i*numero)</div>
+    }
+
+}
+
+
+@code {
+
+    int numero = 0;
+}
+ 
